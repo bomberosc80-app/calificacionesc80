@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>App Bomberos</title>
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#1e1e1e" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <h1>App Calificaciones Bomberos</h1>
+    <div id="login-form">
+      <input type="text" id="usuario" placeholder="Usuario" />
+      <input type="password" id="clave" placeholder="Clave" />
+      <button onclick="login()">Ingresar</button>
+    </div>
+    <div id="admin-panel" style="display:none;">
+      <h2>Panel Administrador</h2>
+      <input type="file" id="archivo-csv" accept=".csv" />
+      <button onclick="cargarCSV()">Cargar CSV</button>
+      <hr />
+      <h3>Crear nuevo usuario</h3>
+      <input type="text" id="nuevo-usuario" placeholder="Usuario" />
+      <input type="password" id="nueva-clave" placeholder="Clave" />
+      <button onclick="crearUsuario()">Crear Usuario</button>
+    </div>
+    <div id="user-panel" style="display:none;">
+      <h2>Bienvenido <span id="nombre-usuario"></span></h2>
+      <div id="tabla-calificaciones">
+        <div id="selector-mes"></div>
+        <div id="tabla-meses"></div>
+      </div>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
