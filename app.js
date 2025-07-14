@@ -15,19 +15,17 @@ const jefes = {
 let jefeActual = null;
 
 function login() {
-  const user = document.getElementById("username").value;
-  const pass = document.getElementById("password").value;
-  const error = document.getElementById("loginError");
+  const usuarioInput = document.getElementById("usuario").value.trim();
+  const claveInput = document.getElementById("clave").value.trim();
 
-  if (jefes[user] && jefes[user].password === pass) {
-    jefeActual = jefes[user];
-    document.getElementById("loginContainer").style.display = "none";
-    document.getElementById("mainContainer").style.display = "block";
-    document.getElementById("welcomeTitle").innerText = `Bienvenido, ${jefeActual.nombre}`;
-    mostrarPersonal();
-    error.innerText = "";
+  const user = usuarios.find(
+    (u) => u.usuario === usuarioInput && u.clave === claveInput
+  );
+
+  if (user) {
+    // inicia sesión
   } else {
-    error.innerText = "Usuario o contraseña incorrectos";
+    alert("Usuario o contraseña inválido");
   }
 }
 
