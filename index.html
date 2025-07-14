@@ -1,22 +1,21 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Calificaciones - Bomberos</title>
+  <meta charset="UTF-8">
+  <title>Calificaciones Bomberos</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="login-container" id="loginContainer">
-    <h2>Ingreso de Jefes</h2>
-    <input type="text" id="username" placeholder="Usuario" />
-    <input type="password" id="password" placeholder="Contraseña" />
+  <div id="loginContainer">
+    <h2>Login de Jefes</h2>
+    <input type="text" id="usuario" placeholder="Usuario" />
+    <input type="password" id="clave" placeholder="Contraseña" />
     <button onclick="login()">Ingresar</button>
     <p id="loginError" class="error"></p>
   </div>
 
-  <div class="main-container" id="mainContainer" style="display:none;">
-    <h2 id="welcomeTitle"></h2>
+  <div id="mainContainer" style="display:none;">
+    <h2 id="bienvenida"></h2>
     <div id="personalContainer"></div>
     <button onclick="logout()">Cerrar sesión</button>
   </div>
