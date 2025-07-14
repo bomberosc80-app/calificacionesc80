@@ -1,56 +1,23 @@
 body {
   background-color: #121212;
-  color: #ff4c4c;
-  font-family: Arial, sans-serif;
-  margin: 0;
+  color: red;
+  font-family: sans-serif;
   padding: 20px;
 }
 
-.login-container,
-.main-container {
-  max-width: 500px;
-  margin: auto;
-  background-color: #1e1e1e;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px #ff4c4c88;
-}
-
-input {
-  width: 100%;
-  margin: 10px 0;
+input, button {
   padding: 10px;
-  border: 1px solid #ff4c4c;
-  background-color: #2a2a2a;
-  color: white;
+  margin: 5px;
   border-radius: 5px;
 }
 
 button {
-  width: 100%;
-  padding: 10px;
-  background-color: #ff4c4c;
+  background-color: red;
   color: white;
   border: none;
-  border-radius: 5px;
   cursor: pointer;
 }
 
-button:hover {
-  background-color: #ff1f1f;
-}
-
 .error {
-  color: #ff9999;
-  margin-top: 10px;
-}
-hr {
-  border: 0;
-  border-top: 1px solid #444;
-  margin: 20px 0;
-}
-
-.persona label {
-  display: block;
-  margin-bottom: 8px;
+  color: orange;
 }
