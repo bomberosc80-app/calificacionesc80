@@ -1,4 +1,4 @@
-// Jefes y su personal
+// Datos de jefes y su personal
 const jefes = {
   jefe1: {
     password: "clave1",
@@ -17,17 +17,17 @@ let jefeActual = null;
 function login() {
   const usuarioInput = document.getElementById("usuario").value.trim();
   const claveInput = document.getElementById("clave").value.trim();
+  const user = jefes[usuarioInput];
 
- const user = jefes[usuarioInput];
-
-if (user && user.password === claveInput) {
-  jefeActual = user;
-  document.getElementById("loginContainer").style.display = "none";
-  document.getElementById("mainContainer").style.display = "block";
-  mostrarPersonal();
-} else {
-  alert("Usuario o contraseña inválido");
-}
+  if (user && user.password === claveInput) {
+    jefeActual = user;
+    document.getElementById("loginContainer").style.display = "none";
+    document.getElementById("mainContainer").style.display = "block";
+    document.getElementById("bienvenida").textContent = `Bienvenido, ${user.nombre}`;
+    mostrarPersonal();
+  } else {
+    document.getElementById("loginError").innerText = "Usuario o contraseña inválidos.";
+  }
 }
 
 function mostrarPersonal() {
@@ -58,7 +58,6 @@ function exportarCSV() {
   const inputs = document.querySelectorAll(".input");
   const datos = {};
 
-  // Agrupar calificaciones por persona
   inputs.forEach(input => {
     const nombre = input.dataset.nombre;
     const categoria = input.dataset.cat;
@@ -70,14 +69,12 @@ function exportarCSV() {
     datos[nombre][categoria] = valor;
   });
 
-  // Crear CSV
   let csv = "Nombre,Ropería,Instrucción,Guardia\n";
   for (const nombre in datos) {
     const cal = datos[nombre];
     csv += `${nombre},${cal["Ropería"] || 0},${cal["Instrucción"] || 0},${cal["Guardia"] || 0}\n`;
   }
 
-  // Descargar CSV
   const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
   const link = document.createElement("a");
   link.setAttribute("href", URL.createObjectURL(blob));
@@ -88,9 +85,10 @@ function exportarCSV() {
 }
 
 function logout() {
+  jefeActual = null;
   document.getElementById("mainContainer").style.display = "none";
   document.getElementById("loginContainer").style.display = "block";
-  document.getElementById("username").value = "";
-  document.getElementById("password").value = "";
+  document.getElementById("usuario").value = "";
+  document.getElementById("clave").value = "";
   document.getElementById("loginError").innerText = "";
 }
