@@ -44,3 +44,13 @@ button:hover {
   color: #ff9999;
   margin-top: 10px;
 }
+hr {
+  border: 0;
+  border-top: 1px solid #444;
+  margin: 20px 0;
+}
+
+.persona label {
+  display: block;
+  margin-bottom: 8px;
+}
