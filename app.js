@@ -18,15 +18,16 @@ function login() {
   const usuarioInput = document.getElementById("usuario").value.trim();
   const claveInput = document.getElementById("clave").value.trim();
 
-  const user = usuarios.find(
-    (u) => u.usuario === usuarioInput && u.clave === claveInput
-  );
+ const user = jefes[usuarioInput];
 
-  if (user) {
-    // inicia sesión
-  } else {
-    alert("Usuario o contraseña inválido");
-  }
+if (user && user.password === claveInput) {
+  jefeActual = user;
+  document.getElementById("loginContainer").style.display = "none";
+  document.getElementById("mainContainer").style.display = "block";
+  mostrarPersonal();
+} else {
+  alert("Usuario o contraseña inválido");
+}
 }
 
 function mostrarPersonal() {
