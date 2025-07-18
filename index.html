@@ -2,24 +2,106 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Calificaciones Bomberos</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Formulario de Calificación</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      background-color: #121212;
+      color: #ff4c4c;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    h2 {
+      text-align: center;
+    }
+    form {
+      max-width: 500px;
+      margin: auto;
+      background: #1e1e1e;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ff4c4c80;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      background: #2a2a2a;
+      color: white;
+      border: 1px solid #ff4c4c;
+      border-radius: 5px;
+    }
+    button {
+      background: #ff4c4c;
+      color: white;
+      padding: 10px;
+      border: none;
+      width: 100%;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #e13232;
+    }
+    #mensaje {
+      margin-top: 15px;
+      text-align: center;
+      color: #fff;
+    }
+  </style>
 </head>
 <body>
-  <div id="loginContainer">
-    <h2>Login de Jefes</h2>
-    <input type="text" id="usuario" placeholder="Usuario" />
-    <input type="password" id="clave" placeholder="Contraseña" />
-    <button onclick="login()">Ingresar</button>
-    <p id="loginError" class="error"></p>
-  </div>
+  <h2>Formulario de Calificación</h2>
+  <form id="formulario">
+    <label for="jefe">Nombre del Jefe:</label>
+    <input type="text" id="jefe" name="jefe" required>
 
-  <div id="mainContainer" style="display:none;">
-    <h2 id="bienvenida"></h2>
-    <div id="personalContainer"></div>
-    <button onclick="logout()">Cerrar sesión</button>
-  </div>
+    <label for="bombero">Nombre del Bombero:</label>
+    <input type="text" id="bombero" name="bombero" required>
 
-  <script src="app.js"></script>
+    <label for="roperia">Ropería (0-10):</label>
+    <input type="number" id="roperia" name="roperia" min="0" max="10" required>
+
+    <label for="instruccion">Instrucción (0-10):</label>
+    <input type="number" id="instruccion" name="instruccion" min="0" max="10" required>
+
+    <label for="guardia">Guardia (0-10):</label>
+    <input type="number" id="guardia" name="guardia" min="0" max="10" required>
+
+    <label for="comentario">Comentario:</label>
+    <textarea id="comentario" name="comentario" rows="3"></textarea>
+
+    <button type="submit">Enviar calificación</button>
+  </form>
+
+  <p id="mensaje"></p>
+
+  <script>
+    const form = document.getElementById("formulario");
+    const mensaje = document.getElementById("mensaje");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const datos = new FormData(form);
+      const objeto = Object.fromEntries(datos.entries());
+
+      try {
+        const respuesta = await fetch("TU_URL_DEL_SCRIPT", {
+          method: "POST",
+          body: JSON.stringify(objeto),
+        });
+
+        if (respuesta.ok) {
+          mensaje.innerText = "✅ Calificación enviada correctamente.";
+          form.reset();
+        } else {
+          mensaje.innerText = "❌ Error al enviar. Intenta nuevamente.";
+        }
+      } catch (error) {
+        mensaje.innerText = "❌ No se pudo conectar con el servidor.";
+      }
+    });
+  </script>
 </body>
 </html>
