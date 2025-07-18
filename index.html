@@ -1,90 +1,115 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Formulario de Calificación</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calificaciones C80</title>
   <style>
     body {
       background-color: #121212;
-      color: #ff4c4c;
+      color: #ff5555;
       font-family: Arial, sans-serif;
-      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
     }
-    h2 {
-      text-align: center;
+
+    h1 {
+      color: #ff5555;
     }
+
     form {
-      max-width: 500px;
-      margin: auto;
-      background: #1e1e1e;
-      padding: 20px;
+      background-color: #1e1e1e;
+      padding: 1.5rem;
       border-radius: 10px;
-      box-shadow: 0 0 10px #ff4c4c80;
-    }
-    input, select, textarea {
+      box-shadow: 0 0 10px rgba(255, 85, 85, 0.5);
+      max-width: 400px;
       width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      background: #2a2a2a;
-      color: white;
-      border: 1px solid #ff4c4c;
-      border-radius: 5px;
     }
-    button {
-      background: #ff4c4c;
-      color: white;
-      padding: 10px;
+
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.3rem;
+      border-radius: 5px;
       border: none;
-      width: 100%;
-      font-size: 16px;
-      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    button {
+      background-color: #ff5555;
+      color: white;
+      margin-top: 1.5rem;
       cursor: pointer;
+      transition: background-color 0.3s ease;
     }
+
     button:hover {
-      background: #e13232;
+      background-color: #ff7777;
     }
+
     #mensaje {
-      margin-top: 15px;
+      margin-top: 1rem;
+      font-weight: bold;
       text-align: center;
-      color: #fff;
     }
   </style>
 </head>
 <body>
-  <h2>Formulario de Calificación</h2>
+
+  <h1>Calificaciones C80</h1>
+
   <form id="formulario">
-    <label for="jefe">Nombre del Jefe:</label>
-    <input type="text" id="jefe" name="jefe" required>
+    <label for="jefe">Jefe:</label>
+    <input type="text" id="jefe" name="jefe" required />
 
-    <label for="bombero">Nombre del Bombero:</label>
-    <input type="text" id="bombero" name="bombero" required>
+    <label for="bombero">Bombero:</label>
+    <input type="text" id="bombero" name="bombero" required />
 
-    <label for="roperia">Ropería (0-10):</label>
-    <input type="number" id="roperia" name="roperia" min="0" max="10" required>
+    <label for="mes">Mes:</label>
+    <select id="mes" name="mes" required>
+      <option value="">-- Seleccionar --</option>
+      <option value="Enero">Enero</option>
+      <option value="Febrero">Febrero</option>
+      <option value="Marzo">Marzo</option>
+      <option value="Abril">Abril</option>
+      <option value="Mayo">Mayo</option>
+      <option value="Junio">Junio</option>
+      <option value="Julio">Julio</option>
+      <option value="Agosto">Agosto</option>
+      <option value="Septiembre">Septiembre</option>
+      <option value="Octubre">Octubre</option>
+      <option value="Noviembre">Noviembre</option>
+      <option value="Diciembre">Diciembre</option>
+    </select>
 
-    <label for="instruccion">Instrucción (0-10):</label>
-    <input type="number" id="instruccion" name="instruccion" min="0" max="10" required>
-
-    <label for="guardia">Guardia (0-10):</label>
-    <input type="number" id="guardia" name="guardia" min="0" max="10" required>
-
-    <label for="comentario">Comentario:</label>
-    <textarea id="comentario" name="comentario" rows="3"></textarea>
+    <label for="puntos">Puntos:</label>
+    <input type="number" id="puntos" name="puntos" required />
 
     <button type="submit">Enviar calificación</button>
+
+    <div id="mensaje"></div>
   </form>
 
-  <p id="mensaje"></p>
-
   <script>
-    const form = document.getElementById("formulario");
-    const mensaje = document.getElementById("mensaje");
-
-    form.addEventListener("submit", async (e) => {
+    document.getElementById("formulario").addEventListener("submit", async function(e) {
       e.preventDefault();
-      const datos = new FormData(form);
-      const objeto = Object.fromEntries(datos.entries());
+
+      const objeto = {
+        jefe: document.getElementById("jefe").value,
+        bombero: document.getElementById("bombero").value,
+        mes: document.getElementById("mes").value,
+        puntos: document.getElementById("puntos").value,
+      };
+
+      const mensaje = document.getElementById("mensaje");
 
       try {
         const respuesta = await fetch("https://script.google.com/macros/s/AKfycbzkCMtxeKBYr31vXH8w4T-TzU-hErOJCT7D3rxaXvnWEXLQYKDV30aEGxLKEpNdVvec/exec", {
@@ -92,14 +117,20 @@
           body: JSON.stringify(objeto),
         });
 
-        if (respuesta.ok) {
-          mensaje.innerText = "✅ Calificación enviada correctamente.";
-          form.reset();
+        const texto = await respuesta.text();
+
+        if (texto === "OK") {
+          mensaje.textContent = "✅ Calificación enviada correctamente.";
+          mensaje.style.color = "#00ff88";
+          document.getElementById("formulario").reset();
         } else {
-          mensaje.innerText = "❌ Error al enviar. Intenta nuevamente.";
+          mensaje.textContent = "⚠️ Error inesperado: " + texto;
+          mensaje.style.color = "#ffaa00";
         }
       } catch (error) {
-        mensaje.innerText = "❌ No se pudo conectar con el servidor.";
+        mensaje.textContent = "❌ No se pudo conectar con el servidor.";
+        mensaje.style.color = "#ff4444";
+        console.error(error);
       }
     });
   </script>
