@@ -4,9 +4,9 @@ let personalActivo = [];
 
 // Cargar CSV desde GitHub
 async function cargarJefes() {
-  const texto = (await response.text()).replace(/^\uFEFF/, '');
   const response = await fetch("https://bomberosc80-app.github.io/calificacionesc80/jefes.csv");
-  const lineas = texto.trim().split("\n").slice(1); // Ignora encabezado
+  const texto = (await response.text()).replace(/^\uFEFF/, ''); // <- elimina BOM
+  const lineas = texto.trim().split("\n").slice(1);
 
   lineas.forEach(linea => {
     const [usuario, clave, personal] = linea.split(",");
