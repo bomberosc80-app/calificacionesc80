@@ -6,7 +6,6 @@ let personalActivo = [];
 async function cargarJefes() {
   const texto = (await response.text()).replace(/^\uFEFF/, '');
   const response = await fetch("https://bomberosc80-app.github.io/calificacionesc80/jefes.csv");
-  const texto = await response.text();
   const lineas = texto.trim().split("\n").slice(1); // Ignora encabezado
 
   lineas.forEach(linea => {
