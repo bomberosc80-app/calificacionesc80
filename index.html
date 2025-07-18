@@ -1,10 +1,24 @@
-<div id="login">
-  <h2>Login Jefe</h2>
-  <input type="text" id="usuario" placeholder="Usuario">
-  <input type="password" id="clave" placeholder="Clave">
-  <button onclick="login()">Ingresar</button>
-</div>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calificaciones C80</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Calificaciones - Jefes</h1>
 
-<div id="formulario" style="display: block;"></div>
+    <div id="login">
+      <input type="text" id="usuario" placeholder="Usuario" />
+      <input type="password" id="clave" placeholder="Clave" />
+      <button onclick="login()">Ingresar</button>
+    </div>
 
-<script src="app.js"></script>
+    <div id="formulario" style="display:none;"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
