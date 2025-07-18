@@ -7,75 +7,42 @@
   <style>
     body {
       background-color: #121212;
-      color: #ff5555;
+      color: #ff4d4d;
       font-family: Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 2rem;
+      padding: 20px;
     }
-
-    h1 {
-      color: #ff5555;
-    }
-
-    form {
-      background-color: #1e1e1e;
-      padding: 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(255, 85, 85, 0.5);
-      max-width: 400px;
+    input, select {
       width: 100%;
-    }
-
-    label {
-      display: block;
-      margin-top: 1rem;
-      font-weight: bold;
-    }
-
-    input, select, button {
-      width: 100%;
-      padding: 0.5rem;
-      margin-top: 0.3rem;
-      border-radius: 5px;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
       border: none;
-      font-size: 1rem;
+      font-size: 16px;
     }
-
     button {
-      background-color: #ff5555;
+      background-color: #ff4d4d;
       color: white;
-      margin-top: 1.5rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    button:hover {
-      background-color: #ff7777;
-    }
-
-    #mensaje {
-      margin-top: 1rem;
-      font-weight: bold;
-      text-align: center;
+      border: none;
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 18px;
+      width: 100%;
     }
   </style>
 </head>
 <body>
 
-  <h1>Calificaciones C80</h1>
+  <h1>Formulario de Calificación</h1>
 
-  <form id="formulario">
-    <label for="jefe">Jefe:</label>
-    <input type="text" id="jefe" name="jefe" required />
+  <form id="calificacionForm">
+    <label>Jefe:</label>
+    <input type="text" id="jefe" required />
 
-    <label for="bombero">Bombero:</label>
-    <input type="text" id="bombero" name="bombero" required />
+    <label>Bombero:</label>
+    <input type="text" id="bombero" required />
 
-    <label for="mes">Mes:</label>
-    <select id="mes" name="mes" required>
-      <option value="">-- Seleccionar --</option>
+    <label>Mes:</label>
+    <select id="mes">
       <option value="Enero">Enero</option>
       <option value="Febrero">Febrero</option>
       <option value="Marzo">Marzo</option>
@@ -90,49 +57,41 @@
       <option value="Diciembre">Diciembre</option>
     </select>
 
-    <label for="puntos">Puntos:</label>
-    <input type="number" id="puntos" name="puntos" required />
+    <label>Ropería:</label>
+    <input type="number" id="roperia" min="0" max="10" required />
 
-    <button type="submit">Enviar calificación</button>
+    <label>Instrucción:</label>
+    <input type="number" id="instruccion" min="0" max="10" required />
 
-    <div id="mensaje"></div>
+    <label>Guardia:</label>
+    <input type="number" id="guardia" min="0" max="10" required />
+
+    <label>Comentario:</label>
+    <input type="text" id="comentario" />
+
+    <button type="submit">Enviar por WhatsApp</button>
   </form>
 
   <script>
-    document.getElementById("formulario").addEventListener("submit", async function(e) {
+    document.getElementById("calificacionForm").addEventListener("submit", function(e) {
       e.preventDefault();
 
-      const objeto = {
-        jefe: document.getElementById("jefe").value,
-        bombero: document.getElementById("bombero").value,
-        mes: document.getElementById("mes").value,
-        puntos: document.getElementById("puntos").value,
-      };
+      const jefe = document.getElementById("jefe").value;
+      const bombero = document.getElementById("bombero").value;
+      const mes = document.getElementById("mes").value;
+      const roperia = document.getElementById("roperia").value;
+      const instruccion = document.getElementById("instruccion").value;
+      const guardia = document.getElementById("guardia").value;
+      const comentario = document.getElementById("comentario").value;
 
-      const mensaje = document.getElementById("mensaje");
+      const mensaje = `🧾 *Calificación C80*%0A👤 Jefe: ${jefe}%0A👨‍🚒 Bombero: ${bombero}%0A📅 Mes: ${mes}%0A👕 Ropería: ${roperia}%0A📚 Instrucción: ${instruccion}%0A🛏 Guardia: ${guardia}%0A💬 Comentario: ${comentario}`;
 
-      try {
-        const respuesta = await fetch("https://script.google.com/macros/s/AKfycbzkCMtxeKBYr31vXH8w4T-TzU-hErOJCT7D3rxaXvnWEXLQYKDV30aEGxLKEpNdVvec/exec", {
-          method: "POST",
-          body: JSON.stringify(objeto),
-        });
+      const numeroDestino = "5493329304565"; // ← reemplazar con tu número (sin espacios)
+      const url = `https://wa.me/${numeroDestino}?text=${mensaje}`;
 
-        const texto = await respuesta.text();
-
-        if (texto === "OK") {
-          mensaje.textContent = "✅ Calificación enviada correctamente.";
-          mensaje.style.color = "#00ff88";
-          document.getElementById("formulario").reset();
-        } else {
-          mensaje.textContent = "⚠️ Error inesperado: " + texto;
-          mensaje.style.color = "#ffaa00";
-        }
-      } catch (error) {
-        mensaje.textContent = "❌ No se pudo conectar con el servidor.";
-        mensaje.style.color = "#ff4444";
-        console.error(error);
-      }
+      window.open(url, "_blank");
     });
   </script>
+
 </body>
 </html>
