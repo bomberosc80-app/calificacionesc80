@@ -2,57 +2,63 @@ let jefes = {};
 let jefeActivo = null;
 let personalActivo = [];
 
-// Cargar CSV desde GitHub
-async function cargarJefes() {
-  const response = await fetch("https://bomberosc80-app.github.io/calificacionesc80/jefes.csv");
-  const texto = (await response.text()).replace(/^\uFEFF/, ''); // limpia el BOM
-  const lineas = texto.trim().split("\n").slice(1);
+// Cargar CSV desde GitHub y parsear
+tasync function cargarJefes() {
+  try {
+    const response = await fetch('https://bomberosc80-app.github.io/calificacionesc80/jefes.csv');
+    let texto = await response.text();
+    texto = texto.replace(/^\uFEFF/, ''); // eliminar BOM si existe
+    const lineas = texto.trim().split('\n').slice(1);
 
-  lineas.forEach(linea => {
-    const [usuario, clave, personal] = linea.split(",");
-    jefes[usuario] = {
-      clave: clave,
-      personal: personal.replace(/"/g, "").split(",")
-    };
-  });
+    lineas.forEach(linea => {
+      const [usuario, clave, personal] = linea.split(/,(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/);
+      jefes[usuario] = {
+        clave: clave,
+        personal: personal.replace(/\"/g, '').split(',')
+      };
+    });
 
-  console.log(jefes); // para confirmar que se cargaron bien
+    console.log('Jefes cargados:', jefes);
+  } catch (e) {
+    console.error('Error cargando jefes.csv:', e);
+  }
 }
 
-
 // Validar login
-function login() {
-  const usuario = document.getElementById("usuario").value.trim();
-  const clave = document.getElementById("clave").value.trim();
+document.getElementById('btnLogin').addEventListener('click', () => {
+  const usuario = document.getElementById('usuario').value.trim();
+  const clave = document.getElementById('clave').value.trim();
 
   if (jefes[usuario] && jefes[usuario].clave === clave) {
     jefeActivo = usuario;
     personalActivo = jefes[usuario].personal;
-    document.getElementById("login").style.display = "none";
-    document.getElementById("formulario").style.display = "block";
+    document.getElementById('loginDiv').style.display = 'none';
+    document.getElementById('formDiv').style.display = 'block';
     mostrarFormulario();
   } else {
-    alert("Usuario o clave incorrectos");
+    document.getElementById('loginMsg').textContent = 'Usuario o clave incorrecta';
   }
-}
+});
 
 // Mostrar formulario de calificaciones
 function mostrarFormulario() {
-  const contenedor = document.getElementById("formulario");
-  contenedor.innerHTML = "";
+  const contenedor = document.getElementById('formDiv');
+  contenedor.innerHTML = '';
 
   personalActivo.forEach(id => {
-    const div = document.createElement("div");
+    const div = document.createElement('div');
     div.innerHTML = `
-      <h3>${id}</h3>
-      <label>Calificación:</label>
-      <input type="text" id="nota-${id}" placeholder="Ej: 10">
+      <h3>Bombero ${id}</h3>
+      <label>Calificación (Depto Personal):</label>
+      <textarea id="nota-${id}" rows="2" placeholder="Ej: 10"></textarea>
       <hr>
     `;
     contenedor.appendChild(div);
   });
 
-  contenedor.innerHTML += `
+  // Selección mes y botón
+  const footer = document.createElement('div');
+  footer.innerHTML = `
     <label for="mes">Mes:</label>
     <select id="mes">
       <option value="">-- Elegí el mes --</option>
@@ -69,29 +75,30 @@ function mostrarFormulario() {
       <option value="Noviembre">Noviembre</option>
       <option value="Diciembre">Diciembre</option>
     </select>
-    <br><br>
-    <button onclick="enviarWhatsApp()">Enviar por WhatsApp</button>
+    <button id="btnEnviar">Enviar por WhatsApp</button>
   `;
+  contenedor.appendChild(footer);
+
+  document.getElementById('btnEnviar').addEventListener('click', enviarWhatsApp);
 }
 
-// Generar y enviar mensaje
+// Generar y enviar mensaje por WhatsApp
 function enviarWhatsApp() {
-  const mes = document.getElementById("mes").value;
+  const mes = document.getElementById('mes').value;
   if (!mes) {
-    alert("Por favor seleccioná un mes.");
+    alert('Por favor seleccioná un mes.');
     return;
   }
 
   let mensaje = `📋 Calificaciones - ${mes}\n👨‍💼 Jefe: ${jefeActivo}\n\n`;
-
   personalActivo.forEach(id => {
     const nota = document.getElementById(`nota-${id}`).value.trim();
     mensaje += `👨‍🚒 ${id}: ${nota}\n`;
   });
 
   const url = `https://wa.me/?text=${encodeURIComponent(mensaje)}`;
-  window.open(url, "_blank");
+  window.open(url, '_blank');
 }
 
-// Iniciar
+// Iniciar carga de datos
 window.onload = cargarJefes;
