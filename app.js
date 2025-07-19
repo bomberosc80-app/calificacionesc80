@@ -11,7 +11,7 @@ async function cargarJefes() {
     const lineas = texto.trim().split('\n').slice(1);
 
     lineas.forEach(linea => {
-      const [usuario, clave, personal, departamento] = linea.split(/,(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/);
+      const [usuario, clave, personal, departamento, nombre] = linea.split(/,(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/);
       jefes[usuario] = {
         clave: clave,
         personal: personal.replace(/\"/g, '').split(','),
