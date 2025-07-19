@@ -77,7 +77,6 @@ function mostrarFormulario() {
     const div = document.createElement('div');
     div.innerHTML = `
       <h3>${id} - ${nombre}</h3>
-      <label>Calificación (Depto Personal):</label>
       <textarea id="nota-${id}" rows="2" placeholder="Ej: 10"></textarea>
       <hr>
     `;
