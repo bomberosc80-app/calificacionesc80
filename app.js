@@ -12,11 +12,13 @@ async function cargarJefes() {
 
     lineas.forEach(linea => {
       const [usuario, clave, personal, departamento, nombre] = linea.split(/,(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/);
-      jefes[usuario] = {
-        clave: clave,
-        personal: personal.replace(/\"/g, '').split(','),
-        departamento: (departamento || '').trim()
-      };
+jefes[usuario] = {
+  clave: clave,
+  personal: personal.replace(/\"/g, '').split(','),
+  departamento: (departamento || '').trim(),
+  nombre: (nombre || '').trim()
+};
+
     });
 
     console.log('Jefes cargados:', jefes);
@@ -91,8 +93,9 @@ function enviarWhatsApp() {
     return;
   }
 
-let depto = jefes[jefeActivo]?.departamento || "Sin departamento";
-let mensaje = `📋 Calificaciones - ${mes}\n👨‍💼 Jefe: ${jefeActivo}\n🏢 Departamento: ${depto}\n\n`;
+let jefe = jefes[jefeActivo];
+let mensaje = `📋 Calificaciones - ${mes}\n👨‍💼 Jefe: ${jefe.nombre} (${jefeActivo})\n🏢 Departamento: ${jefe.departamento}\n\n`;
+
   personalActivo.forEach(id => {
     const nota = document.getElementById(`nota-${id}`).value.trim();
     mensaje += `👨‍🚒 ${id}: ${nota}\n`;
