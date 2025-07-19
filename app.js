@@ -1,6 +1,27 @@
 let jefes = {};
 let jefeActivo = null;
 let personalActivo = [];
+let nombresPersonal = {}; // Mapa de ID a nombre
+
+// Cargar CSV de personal desde GitHub
+async function cargarPersonal() {
+  try {
+    const response = await fetch('https://bomberosc80-app.github.io/calificacionesc80/personal.csv');
+    let texto = await response.text();
+    texto = texto.replace(/^\uFEFF/, ''); // eliminar BOM si existe
+    const lineas = texto.trim().split('\n').slice(1); // saltear encabezado
+
+    lineas.forEach(linea => {
+      const [id, nombre] = linea.split(',');
+      nombresPersonal[id.trim()] = nombre.trim();
+    });
+
+    console.log('Personal cargado:', nombresPersonal);
+  } catch (e) {
+    console.error('Error cargando personal.csv:', e);
+  }
+}
+
 
 // Cargar CSV desde GitHub y parsear
 
@@ -40,6 +61,18 @@ document.getElementById('btnLogin').addEventListener('click', () => {
     document.getElementById('loginDiv').style.display = 'none';
     document.getElementById('formDiv').style.display = 'block';
     mostrarFormulario();
+    personalActivo.forEach(id => {
+  const nombre = nombresPersonal[id.trim()] || 'Nombre desconocido';
+  const div = document.createElement('div');
+  div.innerHTML = `
+    <h3>${id} - ${nombre}</h3>
+    <label>Calificación (Depto Personal):</label>
+    <textarea id="nota-${id}" rows="2" placeholder="Ej: 10"></textarea>
+    <hr>
+  `;
+  contenedor.appendChild(div);
+});
+
   } else {
     document.getElementById('loginMsg').textContent = 'Usuario o clave incorrecta';
   }
@@ -108,3 +141,8 @@ let mensaje = `📋 Calificaciones - ${mes}\n👨‍💼 Jefe: ${jefe.nombre} ($
 
 // Iniciar carga de datos
 window.onload = cargarJefes;
+window.onload = async () => {
+  await cargarPersonal();
+  await cargarJefes();
+};
+
