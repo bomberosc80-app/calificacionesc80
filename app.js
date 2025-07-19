@@ -62,18 +62,6 @@ document.getElementById('btnLogin').addEventListener('click', () => {
     document.getElementById('loginDiv').style.display = 'none';
     document.getElementById('formDiv').style.display = 'block';
     mostrarFormulario();
-    personalActivo.forEach(id => {
-  const nombre = nombresPersonal[id.trim()] || 'Nombre desconocido';
-  const div = document.createElement('div');
-  div.innerHTML = `
-    <h3>${id} - ${nombre}</h3>
-    <label>Calificación (Depto Personal):</label>
-    <textarea id="nota-${id}" rows="2" placeholder="Ej: 10"></textarea>
-    <hr>
-  `;
-  contenedor.appendChild(div);
-});
-
   } else {
     document.getElementById('loginMsg').textContent = 'Usuario o clave incorrecta';
   }
@@ -85,9 +73,11 @@ function mostrarFormulario() {
   contenedor.innerHTML = '';
 
   personalActivo.forEach(id => {
+    const nombre = nombresPersonal[id.trim()] || 'Nombre desconocido';
     const div = document.createElement('div');
     div.innerHTML = `
-      <h3> ${id}</h3>
+      <h3>${id} - ${nombre}</h3>
+      <label>Calificación (Depto Personal):</label>
       <textarea id="nota-${id}" rows="2" placeholder="Ej: 10"></textarea>
       <hr>
     `;
@@ -141,7 +131,6 @@ let mensaje = `📋 Calificaciones - ${mes}\n👨‍💼 Jefe: ${jefe.nombre} ($
 }
 
 // Iniciar carga de datos
-window.onload = cargarJefes;
 window.onload = async () => {
   await cargarPersonal();
   await cargarJefes();
