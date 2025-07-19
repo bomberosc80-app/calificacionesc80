@@ -12,11 +12,11 @@ async function cargarJefes() {
     const lineas = texto.trim().split('\n').slice(1);
 
     lineas.forEach(linea => {
-      const [usuario, clave, personal, seccion, nombre] = linea.split(/,(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/);
+      const [usuario, clave, personal, area, nombre] = linea.split(/,(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/);
 jefes[usuario] = {
   clave: clave,
   personal: personal.replace(/\"/g, '').split(','),
-  seccion: (seccion || '').trim(),
+  area: (area || '').trim(),
   nombre: (nombre || '').trim()
 };
 
@@ -53,7 +53,7 @@ function mostrarFormulario() {
   personalActivo.forEach(id => {
     const div = document.createElement('div');
     div.innerHTML = `
-      <h3>Bombero ${id}</h3>
+      <h3> ${id}</h3>
       <textarea id="nota-${id}" rows="2" placeholder="Ej: 10"></textarea>
       <hr>
     `;
@@ -95,7 +95,7 @@ function enviarWhatsApp() {
   }
 
 let jefe = jefes[jefeActivo];
-let mensaje = `📋 Calificaciones - ${mes}\n👨‍💼 Jefe: ${jefe.nombre} (${jefeActivo})\n🏢 Departamento: ${jefe.departamento}\n\n`;
+let mensaje = `📋 Calificaciones - ${mes}\n👨‍💼 Jefe: ${jefe.nombre} (${jefeActivo})\n🏢 area: ${jefe.area}\n\n`;
 
   personalActivo.forEach(id => {
     const nota = document.getElementById(`nota-${id}`).value.trim();
