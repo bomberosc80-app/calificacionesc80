@@ -3,6 +3,7 @@ let jefeActivo = null;
 let personalActivo = [];
 let nombresPersonal = {}; // Mapa de ID a nombre
 
+
 // Cargar CSV de personal desde GitHub
 async function cargarPersonal() {
   try {
