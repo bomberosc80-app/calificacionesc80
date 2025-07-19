@@ -3,6 +3,7 @@ let jefeActivo = null;
 let personalActivo = [];
 
 // Cargar CSV desde GitHub y parsear
+
 async function cargarJefes() {
   try {
     const response = await fetch('https://bomberosc80-app.github.io/calificacionesc80/jefes.csv');
