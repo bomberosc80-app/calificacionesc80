@@ -11,10 +11,11 @@ async function cargarJefes() {
     const lineas = texto.trim().split('\n').slice(1);
 
     lineas.forEach(linea => {
-      const [usuario, clave, personal] = linea.split(/,(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/);
+      const [usuario, clave, personal, departamento] = linea.split(/,(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/);
       jefes[usuario] = {
         clave: clave,
-        personal: personal.replace(/\"/g, '').split(',')
+        personal: personal.replace(/\"/g, '').split(','),
+        departamento: (departamento || '').trim()
       };
     });
 
@@ -23,6 +24,7 @@ async function cargarJefes() {
     console.error('Error cargando jefes.csv:', e);
   }
 }
+
 
 // Validar login
 document.getElementById('btnLogin').addEventListener('click', () => {
@@ -89,7 +91,8 @@ function enviarWhatsApp() {
     return;
   }
 
-  let mensaje = `📋 Calificaciones - ${mes}\n👨‍💼 Jefe: ${jefeActivo}\n\n`;
+let depto = jefes[jefeActivo]?.departamento || "Sin departamento";
+let mensaje = `📋 Calificaciones - ${mes}\n👨‍💼 Jefe: ${jefeActivo}\n🏢 Departamento: ${depto}\n\n`;
   personalActivo.forEach(id => {
     const nota = document.getElementById(`nota-${id}`).value.trim();
     mensaje += `👨‍🚒 ${id}: ${nota}\n`;
