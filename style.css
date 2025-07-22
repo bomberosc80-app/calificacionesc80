@@ -139,9 +139,10 @@ hr {
 .titulo-app h3 {
   font-size: 1rem;
   margin: 5px 0;
-  color: #ffffff;
+  color: #ffffff !important;
   font-weight: 400;
   letter-spacing: 1px;
 }
+
 
 }
