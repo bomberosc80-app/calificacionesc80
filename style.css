@@ -69,7 +69,7 @@ hr {
   margin: 20px 0;
 }
 
-/* Animación de entrada */
+/* Animaciones */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -79,7 +79,20 @@ hr {
     opacity: 1;
     transform: translateY(0);
   }
-  /* Responsive: ajustes para pantallas pequeñas */
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive: ajustes para pantallas pequeñas */
 @media (max-width: 600px) {
   body {
     padding: 10px;
@@ -107,46 +120,33 @@ hr {
   button {
     font-size: 1rem;
   }
-  
-.titulo-app {
-  text-align: center;
-  margin-bottom: 2rem;
-  line-height: 1.2;
-  animation: fadeInDown 0.7s ease-out;
-}
 
-.titulo-linea1 {
-  font-size: 2rem;
-  font-weight: 600;
-  color: #ff4c4c;
-  text-shadow: 0 2px 8px rgba(255, 75, 75, 0.4);
-}
-
-.titulo-linea2 {
-  font-size: 1.2rem;
-  color: #ff7777;
-  letter-spacing: 1px;
-  font-weight: 400;
-  margin: 0.2rem 0;
-}
-
-.titulo-linea3 {
-  font-size: 1rem;
-  color: #ffffff;
-  font-weight: 300;
-  opacity: 0.9;
-}
-
-/* Animación de aparición suave */
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
+  .titulo-app {
+    text-align: center;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+    animation: fadeInDown 0.7s ease-out;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
+  .titulo-linea1 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #ff4c4c;
+    text-shadow: 0 2px 8px rgba(255, 75, 75, 0.4);
+  }
+
+  .titulo-linea2 {
+    font-size: 1.2rem;
+    color: #ff7777;
+    letter-spacing: 1px;
+    font-weight: 400;
+    margin: 0.2rem 0;
+  }
+
+  .titulo-linea3 {
+    font-size: 1rem;
+    color: #ffffff;
+    font-weight: 300;
+    opacity: 0.9;
+  }
 }
