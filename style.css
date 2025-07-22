@@ -149,4 +149,15 @@ hr {
     font-weight: 300;
     opacity: 0.9;
   }
+  .logo {
+  width: 120px;         /* o un % como 30% si querés que escale */
+  max-width: 100%;
+  height: auto;         /* mantiene proporción */
+  display: block;
+  margin: 0 auto 1rem auto;  /* centrado con espacio debajo */
+  border-radius: 12px;  /* esquinas redondeadas si querés */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* sombra sutil */
+  animation: fadeInDown 0.6s ease-out;
+}
+
 }
