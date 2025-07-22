@@ -1,5 +1,22 @@
 ﻿usuario,clave,personal,area,nombre
-jefes,jefes2025,"218,211,225,216,229,307|211,216,225",Orden interno - jefes de seccion,Hector Keudell
+jefes,jefes2025,"80218,80211,80225,80216,80229,80307",Orden interno - jefes de seccion,Hector Keudell
+jefes2,jefes2025,"80211,80216,80225",Instruccion jefes,Hector Keudell
 80248,80248,"80272,80275,80306",Orden interno - depto personal,Giovanettoni Jonathan
-80248,80248,"80306,80307,80308",Guardia 3,Giovanettoni Jonathan
+ayudantia,ayudantia2025,"80224,80248,80252,80252 roperia",Ayudantia,Varela Marcos
+automotores	automotores2025
+capacitacion	capacitacion2025
+jerarquica	jerarquica2025
+intendencia	intendencia2025
+instruccion	instruccion2025
+aspirantes	aspirantes
+jefes	jefes2025
+matyequipos	matyequipos2025
+materiales	materiales2025
+personal	personal2025
+comunicaciones	comunicaciones2025
+roperia	roperia2025
+tecnica	tecnica2025
+reloj	reloj2025
+especiales	especiales2025
+jca	jca2025
 
