@@ -1,17 +1,14 @@
 ﻿usuario,clave,personal,area,nombre
-Jefes,jefes2025,"80218,80211,80225,80216,80229,80307,80211 - Instruccion,80216 - Instruccion,80225 - Instruccion",Orden interno - jefes de seccion,Hector Keudell
-80248,80248,"80272,80275,80306",Orden interno - depto personal,Giovanettoni Jonathan
-Ayudantia,ayudantia2025,"80224,80248,80252,80252 - Roperia",Ayudantia,Varela Marcos
-Automotores,automotores2025,"80319,80326,80332",Automotores,Torres Jonathan - Bombero 80/307
-capacitacion	capacitacion2025
-jerarquica	jerarquica2025
-intendencia	intendencia2025
-instruccion	instruccion2025
-aspirantes	aspirantes
-jefes	jefes2025
-matyequipos	matyequipos2025
-materiales	materiales2025
-personal	personal2025
+Jefes,jefes,"80218,80211,80225,80216,80229,80307,80211 - Instruccion,80216 - Instruccion,80225 - Instruccion",Orden interno - jefes de seccion,Hector Keudell - Subcomandante 80/205
+Personal,personal,"80272,80275,80306",Orden interno - depto personal,Giovanettoni Jonathan
+Ayudantia,ayudantia,"80224,80248,80252,80252 - Roperia",Orden interno - Ayudantia,Varela Marcos - Oficial Auxiliar de escuadra 80/218
+Automotores,automotores,"80319,80326,80332",Orden interno - Automotores,Torres Jonathan - Bombero 80/307
+Capacitacion,capacitacion,"80217,80226,80217 - Instruccion",Orden interno - Capacitacion,Montenegro Roman - Oficial Auxiliar 80/211
+Jerarquica,jerarquica,"80277",Orden Interno - Capacitacion Jerarquica,Muñoz Juliana - Sub. Ayte de Primera 80/226
+Intendencia,intendencia,"80191,80235,80228,80274,80232,80242,80258,80260,80172,80280,80285,80286,80297,80300,80309,80312,80316,80317,80318,80321,80322,80327,80329,80331,80335,80336,80338,80330 Morales Gisela - Adjunt",Orden Interno - Intendencia,Bon Andrea Sub. Ayte. Mayor 80/190
+instruccion	instruccion
+matyequipos,matyequipos,"80190,80227,80271",Orden Interno - Materiales y Equipos,Roberto Dornell Sub. Ayte. De Primera 80/229
+materiales,materiales,"80301,80308,80328",Orden Interno - Materiales,Garcia Alejandro Suboficial Ayudante 80/227
 comunicaciones	comunicaciones2025
 roperia	roperia2025
 tecnica	tecnica2025
