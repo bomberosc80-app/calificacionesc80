@@ -28,14 +28,6 @@ body {
   animation: fadeInUp 0.5s ease-out forwards;
 }
 
-/* Títulos */
-h1, h3 {
-  color: #ff4c4c;
-  text-align: center;
-  margin-top: 0;
-  margin-bottom: 20px;
-}
-
 /* Inputs, selects y botones */
 input, select, button {
   width: 100%;
