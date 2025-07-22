@@ -73,7 +73,7 @@ function mostrarFormulario() {
   contenedor.innerHTML = '';
 
   personalActivo.forEach(id => {
-    const nombre = nombresPersonal[id.trim()] || 'Nombre desconocido';
+    const nombre = nombresPersonal[id.trim()] || '';
     const div = document.createElement('div');
     div.innerHTML = `
       <h3>${id} - ${nombre}</h3>
