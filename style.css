@@ -193,5 +193,8 @@ hr {
   box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
   text-align: center;
 }
+#formDiv {
+  display: none;
+}
 
 }
