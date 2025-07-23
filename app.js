@@ -65,7 +65,18 @@ document.getElementById('btnLogin').addEventListener('click', () => {
   } else {
     document.getElementById('loginMsg').textContent = 'Usuario o clave incorrecta';
   }
+  const jefeData = jefes[usuario]; // Esto ya lo tenés cargado desde el CSV
+const nombreJefe = jefeData.nombre;
+const areaJefe = jefeData.area || "Área no especificada";
+
+const infoBox = document.getElementById("infoJefe");
+infoBox.innerHTML = `
+  <h3>${nombreJefe}</h3>
+  <p><strong>Área:</strong> ${areaJefe}</p>
+`;
+infoBox.classList.remove("hidden");
 });
+
 
 // Mostrar formulario de calificaciones
 function mostrarFormulario() {
