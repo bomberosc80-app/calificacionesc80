@@ -59,6 +59,8 @@ document.getElementById('btnLogin').addEventListener('click', () => {
   if (jefes[usuario] && jefes[usuario].clave === clave) {
     jefeActivo = usuario;
     personalActivo = jefes[usuario].personal;
+    document.getElementById('btnLogout').classList.remove('hidden');
+
 
     // Ocultar login y mostrar formulario
     document.getElementById('loginDiv').style.display = 'none';
