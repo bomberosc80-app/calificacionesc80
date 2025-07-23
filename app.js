@@ -31,13 +31,12 @@ async function cargarJefes() {
     const lineas = texto.trim().split('\n').slice(1);
 
 lineas.forEach(linea => {
-  const [usuario, clave, personal, area, nombre, maximo] = linea.split(/,(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/);
+  const [usuario, clave, personal, area, nombre] = linea.split(/,(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/);
   jefes[usuario] = {
     clave: clave,
     personal: personal.replace(/\"/g, '').split(','),
     area: (area || '').trim(),
     nombre: (nombre || '').trim(),
-    maximo: maximo ? maximo.trim() : null
   };
 });
 
