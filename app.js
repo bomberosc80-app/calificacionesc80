@@ -3,14 +3,13 @@ let jefeActivo = null;
 let personalActivo = [];
 let nombresPersonal = {}; // Mapa de ID a nombre
 
-
 // Cargar CSV de personal desde GitHub
 async function cargarPersonal() {
   try {
     const response = await fetch('https://bomberosc80-app.github.io/calificacionesc80/personal.csv');
     let texto = await response.text();
-    texto = texto.replace(/^\uFEFF/, ''); // eliminar BOM si existe
-    const lineas = texto.trim().split('\n').slice(1); // saltear encabezado
+    texto = texto.replace(/^\uFEFF/, '');
+    const lineas = texto.trim().split('\n').slice(1);
 
     lineas.forEach(linea => {
       const [id, nombre] = linea.split(',');
@@ -23,25 +22,22 @@ async function cargarPersonal() {
   }
 }
 
-
-// Cargar CSV desde GitHub y parsear
-
+// Cargar CSV de jefes desde GitHub
 async function cargarJefes() {
   try {
     const response = await fetch('https://bomberosc80-app.github.io/calificacionesc80/jefes.csv');
     let texto = await response.text();
-    texto = texto.replace(/^\uFEFF/, ''); // eliminar BOM si existe
+    texto = texto.replace(/^\uFEFF/, '');
     const lineas = texto.trim().split('\n').slice(1);
 
     lineas.forEach(linea => {
       const [usuario, clave, personal, area, nombre] = linea.split(/,(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/);
-jefes[usuario] = {
-  clave: clave,
-  personal: personal.replace(/\"/g, '').split(','),
-  area: (area || '').trim(),
-  nombre: (nombre || '').trim()
-};
-
+      jefes[usuario] = {
+        clave: clave,
+        personal: personal.replace(/\"/g, '').split(','),
+        area: (area || '').trim(),
+        nombre: (nombre || '').trim()
+      };
     });
 
     console.log('Jefes cargados:', jefes);
@@ -49,7 +45,6 @@ jefes[usuario] = {
     console.error('Error cargando jefes.csv:', e);
   }
 }
-
 
 // Validar login
 document.getElementById('btnLogin').addEventListener('click', () => {
@@ -60,7 +55,6 @@ document.getElementById('btnLogin').addEventListener('click', () => {
     jefeActivo = usuario;
     personalActivo = jefes[usuario].personal;
 
-    // Ocultar login, mostrar formulario
     document.getElementById('loginDiv').style.display = 'none';
     document.getElementById('formDiv').style.display = 'block';
     document.getElementById('btnLogout').classList.remove('hidden');
@@ -82,14 +76,13 @@ document.getElementById('btnLogin').addEventListener('click', () => {
     document.getElementById('loginMsg').textContent = 'Usuario o clave incorrecta';
 
     // Ocultar infoJefe si el login falla
-    document.getElementById('infoJefe').classList.add('hidden');
-    document.getElementById('infoJefe').innerHTML = '';
+    const infoBox = document.getElementById("infoJefe");
+    infoBox.classList.add('hidden');
+    infoBox.innerHTML = '';
   }
 });
 
-
-
-// Mostrar formulario de calificaciones
+// Mostrar formulario
 function mostrarFormulario() {
   const contenedor = document.getElementById('formDiv');
   contenedor.innerHTML = '';
@@ -105,7 +98,6 @@ function mostrarFormulario() {
     contenedor.appendChild(div);
   });
 
-  // Selección mes y botón
   const footer = document.createElement('div');
   footer.innerHTML = `
     <label for="mes">Mes:</label>
@@ -131,7 +123,7 @@ function mostrarFormulario() {
   document.getElementById('btnEnviar').addEventListener('click', enviarWhatsApp);
 }
 
-// Generar y enviar mensaje por WhatsApp
+// Enviar por WhatsApp
 function enviarWhatsApp() {
   const mes = document.getElementById('mes').value;
   if (!mes) {
@@ -139,8 +131,8 @@ function enviarWhatsApp() {
     return;
   }
 
-let jefe = jefes[jefeActivo];
-let mensaje = `📋 Calificaciones - ${mes}\n👨‍💼 Jefe: ${jefe.nombre} \n🏢 area: ${jefe.area}\n\n`;
+  let jefe = jefes[jefeActivo];
+  let mensaje = `📋 Calificaciones - ${mes}\n👨‍💼 Jefe: ${jefe.nombre}\n🏢 Área: ${jefe.area}\n\n`;
 
   personalActivo.forEach(id => {
     const nota = document.getElementById(`nota-${id}`).value.trim();
@@ -151,13 +143,7 @@ let mensaje = `📋 Calificaciones - ${mes}\n👨‍💼 Jefe: ${jefe.nombre} \n
   window.open(url, '_blank');
 }
 
-// Iniciar carga de datos
-window.onload = async () => {
-  await cargarPersonal();
-  await cargarJefes();
-};
-
-// Botón cerrar sesión
+// Cerrar sesión
 document.getElementById("btnLogout").addEventListener("click", () => {
   jefeActivo = null;
   personalActivo = [];
@@ -172,3 +158,8 @@ document.getElementById("btnLogout").addEventListener("click", () => {
   document.getElementById('loginMsg').textContent = '';
 });
 
+// Cargar CSVs al iniciar
+window.onload = async () => {
+  await cargarPersonal();
+  await cargarJefes();
+};
