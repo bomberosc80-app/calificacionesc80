@@ -59,15 +59,13 @@ document.getElementById('btnLogin').addEventListener('click', () => {
   if (jefes[usuario] && jefes[usuario].clave === clave) {
     jefeActivo = usuario;
     personalActivo = jefes[usuario].personal;
-    document.getElementById('btnLogout').classList.remove('hidden');
 
-
-    // Ocultar login y mostrar formulario
+    // Ocultar login, mostrar formulario
     document.getElementById('loginDiv').style.display = 'none';
     document.getElementById('formDiv').style.display = 'block';
-    mostrarFormulario();
+    document.getElementById('btnLogout').classList.remove('hidden');
 
-    // Mostrar datos del jefe logueado
+    // Mostrar datos del jefe
     const jefeData = jefes[usuario];
     const nombreJefe = jefeData.nombre;
     const areaJefe = jefeData.area || "Área no especificada";
@@ -79,10 +77,16 @@ document.getElementById('btnLogin').addEventListener('click', () => {
     `;
     infoBox.classList.remove("hidden");
 
+    mostrarFormulario();
   } else {
     document.getElementById('loginMsg').textContent = 'Usuario o clave incorrecta';
+
+    // Ocultar infoJefe si el login falla
+    document.getElementById('infoJefe').classList.add('hidden');
+    document.getElementById('infoJefe').innerHTML = '';
   }
 });
+
 
 
 // Mostrar formulario de calificaciones
