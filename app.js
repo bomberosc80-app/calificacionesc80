@@ -151,3 +151,18 @@ window.onload = async () => {
   await cargarJefes();
 };
 
+// Botón cerrar sesión
+document.getElementById("btnLogout").addEventListener("click", () => {
+  jefeActivo = null;
+  personalActivo = [];
+
+  document.getElementById('loginDiv').style.display = 'block';
+  document.getElementById('formDiv').style.display = 'none';
+  document.getElementById('infoJefe').classList.add('hidden');
+  document.getElementById('infoJefe').innerHTML = '';
+  document.getElementById('btnLogout').classList.add('hidden');
+  document.getElementById('usuario').value = '';
+  document.getElementById('clave').value = '';
+  document.getElementById('loginMsg').textContent = '';
+});
+
