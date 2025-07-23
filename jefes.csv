@@ -1,6 +1,6 @@
 ﻿usuario,clave,personal,area,nombre
 Jefes,jefes,"80218,80211,80225,80216,80229,80307,80211 - Montenegro Roman - Instruccion,80216 - Galvan Oscar - Instruccion,80225 - Garrote Juan - Instruccion",Orden interno - jefes de seccion,Hector Keudell - Subcomandante 80/205
-Personal,personal,"80272,80275,80306",Orden interno - depto personal,Giovanettoni Jonathan
+Personal,personal,"80272,80275,80306",Orden interno - depto personal,Giovanettoni Jonathan - Suboficial Ayudante Principal
 Ayudantia,ayudantia,"80224,80248,80252,80252 - Cava Nicolas - Roperia",Orden interno - Ayudantia,Varela Marcos - Oficial Auxiliar de escuadra 80/218
 Automotores,automotores,"80319,80326,80332",Orden interno - Automotores,Torres Jonathan - Bombero 80/307
 Capacitacion,capacitacion,"80217,80226,80217 - Noguera Vanesa - Instruccion",Orden interno - Capacitacion,Montenegro Roman - Oficial Auxiliar 80/211
@@ -12,3 +12,4 @@ Materiales,materiales,"80301,80308,80328",Orden Interno - Materiales,Garcia Alej
 Comunicaciones,comunicaciones,"80218,80211,80191,80190,80225,80217,80224,80216,80248,80263,80229,80235,80226,80227,80228,80252,80272,80273,80274,80275,80277,80299,80161,80232,80242,80258,80260,80172,80271,80280,80285,80286,80297,80300,80301,80306,80307,80308,80309,80312,80316,80317,80318,80319,80321,80322,80326,80327,80328,80329,80330,80331,80332,80334,80336,80338",Puntos HT,Coubet Gabriel - Bombero 80/271
 Roperia,roperia,"80218,80211,80191,80190,80225,80217,80224,80216,80248,80263,80229,80235,80226,80227,80228,80272,80273,80274,80275,80277,80299,80161,80232,80242,80258,80260,80172,80271,80280,80285,80286,80297,80300,80301,80306,80307,80308,80309,80312,80316,80317,80318,80319,80321,80322,80326,80327,80328,80329,80330,80331,80332,80334,80336,80338",Roperia,Cava Nicolas - Sub. Ayudante 80/252
 Tecnica,tecnica,"80273,80161,80334",Orden Interno - Dto. Tecnica,Alzogaray Angel - Suboficial Ay. Principal 80/224
+Guardia3,Guardia3,"80263,80229,80299,80280,80301,80306,80307,80308,80317,80318,80319,80321",Guardia - Grupo 3,Giovanettoni Jonathan - Suboficia Ayudante Principal
