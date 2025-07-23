@@ -88,7 +88,7 @@ function mostrarFormulario() {
     const div = document.createElement('div');
     div.innerHTML = `
       <h3>${id} - ${nombre}</h3>
-      <textarea id="nota-${id}" rows="2" placeholder="Ej: 10"></textarea>
+      <textarea id="nota-${id}" rows="2" placeholder="Toca para calificar"></textarea>
       <hr>
     `;
     contenedor.appendChild(div);
@@ -129,7 +129,7 @@ function enviarWhatsApp() {
   }
 
 let jefe = jefes[jefeActivo];
-let mensaje = `📋 Calificaciones - ${mes}\n👨‍💼 Jefe: ${jefe.nombre} (${jefeActivo})\n🏢 area: ${jefe.area}\n\n`;
+let mensaje = `📋 Calificaciones - ${mes}\n👨‍💼 Jefe: ${jefe.nombre} \n🏢 area: ${jefe.area}\n\n`;
 
   personalActivo.forEach(id => {
     const nota = document.getElementById(`nota-${id}`).value.trim();
