@@ -59,30 +59,27 @@ document.getElementById('btnLogin').addEventListener('click', () => {
   if (jefes[usuario] && jefes[usuario].clave === clave) {
     jefeActivo = usuario;
     personalActivo = jefes[usuario].personal;
+
+    // Ocultar login y mostrar formulario
     document.getElementById('loginDiv').style.display = 'none';
     document.getElementById('formDiv').style.display = 'block';
     mostrarFormulario();
+
+    // Mostrar datos del jefe logueado
+    const jefeData = jefes[usuario];
+    const nombreJefe = jefeData.nombre;
+    const areaJefe = jefeData.area || "Área no especificada";
+
+    const infoBox = document.getElementById("infoJefe");
+    infoBox.innerHTML = `
+      <h3>${nombreJefe}</h3>
+      <p><strong>Área:</strong> ${areaJefe}</p>
+    `;
+    infoBox.classList.remove("hidden");
+
   } else {
     document.getElementById('loginMsg').textContent = 'Usuario o clave incorrecta';
   }
-  document.getElementById('infoJefe').classList.remove('hidden');
-document.getElementById('infoJefe').innerHTML = `
-  <p><strong>Jefe:</strong> ${jefeNombre}</p>
-  <p><strong>Área:</strong> ${nombreDelArea}</p>
-`;
-
-  const jefeData = jefes[usuario]; // Esto ya lo tenés cargado desde el CSV
-const nombreJefe = jefeData.nombre;
-const areaJefe = jefeData.area || "Área no especificada";
-
-const infoBox = document.getElementById("infoJefe");
-infoBox.innerHTML = `
-  <h3>${nombreJefe}</h3>
-  <p><strong>Área:</strong> ${areaJefe}</p>
-`;
-infoBox.classList.remove("hidden");
-  document.getElementById('infoJefe').classList.add('hidden');
-
 });
 
 
