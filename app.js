@@ -63,16 +63,11 @@ document.getElementById('btnLogin').addEventListener('click', () => {
     const jefeData = jefes[usuario];
     const nombreJefe = jefeData.nombre;
     const areaJefe = jefeData.area || "Área no especificada";
-
     const infoBox = document.getElementById("infoJefe");
-    const puntajeMax = jefeData.maximo || "No definido";
 
 infoBox.innerHTML = `
   <h3>${nombreJefe}</h3>
   <p><strong>Área:</strong> ${areaJefe}</p>
-  <p style="color: orange;"><strong>Advertencia:</strong> Calificación máxima: ${puntajeMax} puntos</p>
-`;
-
     infoBox.classList.remove("hidden");
 
     mostrarFormulario();
