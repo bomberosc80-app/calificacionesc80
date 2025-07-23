@@ -1,10 +1,10 @@
-﻿usuario,clave,personal,area,nombre,maximo
-Jefes,jefes,"80218,80211,80225,80216,80229,80307,80211 - Montenegro Roman - Instruccion,80216 - Galvan Oscar - Instruccion,80225 - Garrote Juan - Instruccion",Orden interno - jefes de seccion,Hector Keudell 80/205 - Subcomandante,10 orden interno / 15 instruccion
-Personal,personal,"80272,80275,80306",Orden interno - depto personal,Giovanettoni Jonathan 80/248 - Suboficial Ayudante Principal,10
-Ayudantia,ayudantia,"80224,80248,80252,80252 - Cava Nicolas - Roperia",Orden interno - Ayudantia,Varela Marcos 80/218 - Oficial Auxiliar de escuadra,10
-Automotores,automotores,"80319,80326,80332",Orden interno - Automotores,Torres Jonathan 80/307 - Bombero,10
-Capacitacion,capacitacion,"80217,80226,80217 - Noguera Vanesa - Instruccion",Orden interno - Capacitacion,Montenegro Roman 80/211 - Oficial Auxiliar,10 orden interno / 15 instruccion
-Jerarquica,jerarquica,"80277",Orden Interno - Capacitacion Jerarquica,Muñoz Juliana 80/226 - Suboficial Ayudante de Primera,10
+﻿usuario,clave,personal,area,nombre
+Jefes,jefes,"80218,80211,80225,80216,80229,80307,80211 - Montenegro Roman - Instruccion,80216 - Galvan Oscar - Instruccion,80225 - Garrote Juan - Instruccion",Orden interno - jefes de seccion,Hector Keudell 80/205 - Subcomandante
+Personal,personal,"80272,80275,80306",Orden interno - depto personal,Giovanettoni Jonathan 80/248 - Suboficial Ayudante Principal
+Ayudantia,ayudantia,"80224,80248,80252,80252 - Cava Nicolas - Roperia",Orden interno - Ayudantia,Varela Marcos 80/218 - Oficial Auxiliar de escuadra
+Automotores,automotores,"80319,80326,80332",Orden interno - Automotores,Torres Jonathan 80/307 - Bombero
+Capacitacion,capacitacion,"80217,80226,80217 - Noguera Vanesa - Instruccion",Orden interno - Capacitacion,Montenegro Roman 80/211 - Oficial Auxiliar
+Jerarquica,jerarquica,"80277",Orden Interno - Capacitacion Jerarquica,Muñoz Juliana 80/226 - Suboficial Ayudante de Primera
 Intendencia,intendencia,"80191,80235,80228,80274,80232,80242,80258,80260,80172,80280,80285,80286,80297,80300,80309,80312,80316,80317,80318,80321,80322,80327,80329,80331,80335,80336,80338,80330 - Morales Gisela - Adjunta",Orden Interno - Intendencia,Bon Andrea 80/190 - Suboficial Ayudante Mayor
 Instruccion,instruccion,"80218,80191,80190,80224,80248,80263,80229,80235,80226,80227,80228,80252,80272,80273,80274,80275,80277,80299,80161,80232,80242,80258,80260,80172,80271,80280,80285,80286,80297,80300,80301,80306,80307,80308,80309,80312,80316,80317,80318,80319,80321,80322,80326,80327,80328,80329,80330,80331,80332,80334,80336,80338,80263 - Torrens Luis - Orden interno,80299 - Ciriza Alejo - Orden Interno",Instruccion,Noguera Vanesa 80/217 - Suboficial Ayudante Principal
 Matyequipos,matyequipos,"80190,80227,80271",Orden Interno - Materiales y Equipos,Roberto Dornell 80/229 - Suboficial Ayudante de Primera
