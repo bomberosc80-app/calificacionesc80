@@ -65,6 +65,12 @@ document.getElementById('btnLogin').addEventListener('click', () => {
   } else {
     document.getElementById('loginMsg').textContent = 'Usuario o clave incorrecta';
   }
+  document.getElementById('infoJefe').classList.remove('hidden');
+document.getElementById('infoJefe').innerHTML = `
+  <p><strong>Jefe:</strong> ${jefeNombre}</p>
+  <p><strong>Área:</strong> ${nombreDelArea}</p>
+`;
+
   const jefeData = jefes[usuario]; // Esto ya lo tenés cargado desde el CSV
 const nombreJefe = jefeData.nombre;
 const areaJefe = jefeData.area || "Área no especificada";
@@ -75,6 +81,8 @@ infoBox.innerHTML = `
   <p><strong>Área:</strong> ${areaJefe}</p>
 `;
 infoBox.classList.remove("hidden");
+  document.getElementById('infoJefe').classList.add('hidden');
+
 });
 
 
