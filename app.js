@@ -30,15 +30,15 @@ async function cargarJefes() {
     texto = texto.replace(/^\uFEFF/, '');
     const lineas = texto.trim().split('\n').slice(1);
 
-lineas.forEach(linea => {
-  const [usuario, clave, personal, area, nombre] = linea.split(/,(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/);
-  jefes[usuario] = {
-    clave: clave,
-    personal: personal.replace(/\"/g, '').split(','),
-    area: (area || '').trim(),
-    nombre: (nombre || '').trim(),
-  };
-});
+    lineas.forEach(linea => {
+      const [usuario, clave, personal, area, nombre] = linea.split(/,(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/);
+      jefes[usuario] = {
+        clave: clave,
+        personal: personal.replace(/\"/g, '').split(','),
+        area: (area || '').trim(),
+        nombre: (nombre || '').trim()
+      };
+    });
 
     console.log('Jefes cargados:', jefes);
   } catch (e) {
@@ -63,11 +63,12 @@ document.getElementById('btnLogin').addEventListener('click', () => {
     const jefeData = jefes[usuario];
     const nombreJefe = jefeData.nombre;
     const areaJefe = jefeData.area || "Área no especificada";
-    const infoBox = document.getElementById("infoJefe");
 
-infoBox.innerHTML = `
-  <h3>${nombreJefe}</h3>
-  <p><strong>Área:</strong> ${areaJefe}</p>
+    const infoBox = document.getElementById("infoJefe");
+    infoBox.innerHTML = `
+      <h3>${nombreJefe}</h3>
+      <p><strong>Área:</strong> ${areaJefe}</p>
+    `;
     infoBox.classList.remove("hidden");
 
     mostrarFormulario();
