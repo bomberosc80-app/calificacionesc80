@@ -156,4 +156,27 @@ hr {
   button {
     font-size: 1rem;
   }
+  .info-jefe {
+  background-color: #1a1a1a;
+  border: 2px solid #ff4b4b;
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #f55;
+  box-shadow: 0 0 12px rgba(255, 75, 75, 0.2);
+  animation: fadeInUp 0.4s ease-out;
+}
+
+.info-jefe h3 {
+  margin: 0 0 8px;
+  font-size: 1.3rem;
+  color: #fff;
+}
+
+.info-jefe p {
+  margin: 0;
+  font-size: 1rem;
+}
+
 }
