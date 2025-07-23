@@ -138,7 +138,7 @@ function enviarWhatsApp() {
     const nota = document.getElementById(`nota-${id}`).value.trim();
     mensaje += `👨‍🚒 ${id}: ${nota}\n`;
   });
-
+  const numero = "5493329530568";
   const url = `https://wa.me/?text=${encodeURIComponent(mensaje)}`;
   window.open(url, '_blank');
 }
